@@ -1,0 +1,83 @@
+<html>
+<head><title>Cube</title><head>
+<body>
+
+
+<form action="cube.php" method="get">
+<p>Unesi vrednost stranice za izracunavanje zapremine kocke: </p>
+<input type="text" name="cube" id="stranica1" onkeyup="izracunaj()">
+
+</form>
+<p id="cube_p">
+
+</p>
+<form action="cube1.php" method="get">
+<p>Unesi vrednost stranice za izracunavanje ukupnog zbira stranica kocke : </p>
+<input type="text" name="cube1" id="stranica2" onkeyup= "izracunaj1()" >
+
+</form>
+
+<p id="cube_p1">
+
+</p>
+
+
+
+<script>
+	 function ajaxFunction(){
+      var ajaxRequest;
+      try{
+         ajaxRequest = new XMLHttpRequest();
+      }catch (e){
+         try{
+            ajaxRequest = new ActiveXObject("MSXML2.XMLHTTP");
+         }catch (e) {
+            try{
+               ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+            }catch (e){
+               alert("Your browser broke!");
+               return false;
+            }
+         }
+      }
+      return ajaxRequest;
+   }
+
+	var cube_p = document.getElementById("cube_p");
+	var cube_p1 = document.getElementById("cube_p1");
+	
+   function izracunaj(){
+	  
+      var xmlHttp = ajaxFunction();
+
+      var vredn_zapr = document.forms[0].cube.value;
+
+      xmlHttp.open("GET", "cube.php?cube=" + vredn_zapr , false);
+
+      xmlHttp.send();
+
+      var zapr = xmlHttp.responseText;
+	  cube_p.innerHTML = "Zapremina kocke je : " + zapr + "cm3";
+     }
+
+     
+	 function izracunaj1(){
+	  
+      var xmlHttp1 = ajaxFunction();
+
+      var zbir_str = document.forms[1].cube1.value;
+
+      xmlHttp1.open("GET", "cube1.php?cube1=" + zbir_str , false);
+
+      xmlHttp1.send();
+
+      var zbir = xmlHttp1.responseText;
+	  cube_p1.innerHTML = "Zbir svih stranica kocke je : " + zbir + "cm";
+     }
+
+    
+	
+
+</script>
+</body>
+</html>

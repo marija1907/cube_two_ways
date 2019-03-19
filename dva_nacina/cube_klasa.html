@@ -1,0 +1,32 @@
+<html>
+<head><title>Cube</title></head>
+<body>
+
+
+<script>
+
+
+
+var Kocka = function(a){
+	this._a = a;
+	
+	this.zapremina = function(){
+		return this._a * this._a * this._a;
+	}
+	
+	this.zbir_str = function(){
+		return this._a * 12;
+	}
+}
+var kocka_zap = new Kocka(parseInt(prompt("Unesi stranicu za izracunavanje zapremine kocke a : ")));
+alert ("Zapremina kocke je : " + kocka_zap.zapremina());
+
+var kocka_str = new Kocka(parseInt(prompt("Unesi stranicu za izracunavanje zbira stranica kocke a : ")));
+alert ("Zbir stranica kocke je : " + kocka_str.zbir_str());
+
+</script>
+
+
+
+</body>
+</html>
